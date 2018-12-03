@@ -19,4 +19,14 @@
         android:onClick="sendNotification"
         />
 
+    <EditText
+        android:id="@+id/plainText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/ClickMeBtn"
+        android:textColor="@color/red"
+
+        />
+
 </android.support.constraint.ConstraintLayout>
