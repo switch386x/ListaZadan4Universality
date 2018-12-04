@@ -35,31 +35,26 @@ public class MainActivity extends AppCompatActivity {
             });
 
     }
-    @Override
-    public void onPause(){
-        super.onPause();
-        // jak zrobic zeby to mialo dostep do mojego edit texta i jak nie zamykam appki tylko ja minimalizuje i wznawiam z notyfikacji zeby maintainowalo text a kiedy ja zamykam i odpalam
-        // z notyfikacji to zeby sie nie maintainowal stan editText
-    }
-    @Override
-    public void onResume(){
-        super.onResume();
 
-    }
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void sendNotification(View view){
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this); //czemu to jest deprecated(redundant code)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this); //deprecated - przestarzaly kod, dzialajacy ale trzymany ze wzgledu na wsteczkompatybilnosc
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setContentTitle("Hello");
         builder.setContentText("Click me too!");
-
+        builder.setAutoCancel(true);
         Intent resultIntent = new Intent(this,MainActivity.class);
-        TaskStackBuilder sb = create(this);
-        sb.addParentStack(MainActivity.class);
-        sb.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent = sb.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+        resultIntent.setAction(Intent.ACTION_MAIN);
+        resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//        TaskStackBuilder sb = create(this);
+//        sb.addParentStack(MainActivity.class);
+//        sb.addNextIntent(resultIntent);
+//        PendingIntent resultPendingIntent = sb.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, 0);
         builder.setContentIntent(resultPendingIntent);
 
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

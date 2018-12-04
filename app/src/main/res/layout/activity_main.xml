@@ -26,7 +26,6 @@
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@id/ClickMeBtn"
         android:textColor="@color/red"
-
         />
 
 </android.support.constraint.ConstraintLayout>
