@@ -49,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
         resultIntent.setAction(Intent.ACTION_MAIN);
         resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//        TaskStackBuilder sb = create(this);
-//        sb.addParentStack(MainActivity.class);
-//        sb.addNextIntent(resultIntent);
-//        PendingIntent resultPendingIntent = sb.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, 0);
         builder.setContentIntent(resultPendingIntent);
 
